@@ -1,47 +1,36 @@
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
-const answerButton = document.getElementById('answer-buttons')
+const questionElement = document.getElementById('question')
+const answerButtonsElement = document.getElementById('answer-buttons')
 startButton.addEventListener('click', startGame)
-answerButton.addEventListener('click', show)
-
+//answerButton.addEventListener('click', )
+let shuffledQuestions, currentQuestionIndexes
 
 function startGame() {
-    console.log('you clicked the button')
-    
-    
-    function shuffle(questions) {
-        let shuffledQuestions = [];
-        let questionIndexes = [];
-        
-        let i = 0
-        while (i < questions.length) {
-            let randomQuestions = math.floor(math.random() * questions.length)
-            if(!questionIndexes.includes(randomQuestions)) {
-                shuffledQuestions.push(questions[randomQuestions]);
-                questionIndexes.push(randomQuestions);
-                i++;
-            }
-        }
-        console.log(shuffledQuestions)
-        return shuffledQuestions
-    }
-    
-    startButton.classList.add('hide')
-    questionContainerElement.classList.remove('hide')
-    shuffle(questions);
-    setNextQuestion()
+    console.log('you clicked the button');
+    startButton.classList.add('hide');
+    //shuffling questions
+    shuffledQuestions = question.sort(() => Math.random() - .5);
+    //stopping questions from repeating
+    currentQuestionIndexes = 0;
+    questionContainerElement.classList.remove('hide');
+    setNextQuestion();
+    shuffled(question);
 }
 
+
+
 function selectAnswer() {
-    const random = math.floor(math.random() * questions.length);
-    console.long(random, questions[random]);
 }
 
 function setNextQuestion() {
-    showQustion(questions.random)
+    showQuestion(shuffledQuestions[currentQuestionIndexes])
 }
 
-const questions = [
+function showQuestion(question) {
+    questionElement.innerText = question.question
+}
+const question = [
     {
         question: 'what is an array?',
         choices: ['collection of similar data elements stored at contiguous memory locations','a fish', 'a penguin', 'a squid',],
