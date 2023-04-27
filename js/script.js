@@ -2,49 +2,60 @@ const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-startButton.addEventListener('click', startGame)
-answerButtonsElement.addEventListener('click', selectAnswer)
-let shuffledQuestions, currentQuestionIndexes
+let shuffledQuestions, currentQuestionIndex , correctAnswers = 0;
+
+startButton.addEventListener('click', startGame);
+answerButtonsElement.addEventListener('click', event=> {
+    //if btn is selected it will call select answer then will determine if the users input is correct
+    if(event.target.classlist.contains('btn')) {
+        selectAnswer(event.target.dataset.correct);
+    }
+});
 
 function startGame() {
     console.log('you clicked the button');
     startButton.classList.add('hide');
     //shuffling questions
-    shuffledQuestions = shuffledQuestions.sort(() => Math.random() - .5);
+    shuffledQuestions = shuffled(shuffledQuestions);
     //stopping questions from repeating
-    currentQuestionIndexes = 0;
+    currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
     setNextQuestion();
-    shuffled(shuffledQuestions);
-}
-
-
-
-function selectAnswer() {
-    for (let i = 0; i < shuffledQuestion.length; i++) { 
-        let shuffledQuestion = shuffledQuestion[i][0]; 
-        let answer = shuffledQuestion[i][1]; 
-      
-        if (response === answer) {
-          correctAnswers++
-          console.log(correctAnswers);
-        }
-      }
 }
 
 function setNextQuestion() {
-    showQuestion(shuffledQuestions[currentQuestionIndexes])
+    resetQuestion()
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
+
+
+function selectAnswer(response) {
+    const question = shuffledQuestion[currentQuestionIndex]
+    //checking if user response is the correct answer
+    if(response == question.answer) {
+        correctAnswers++;
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex < shuffledQuestions.length) {
+        setNextQuestion();
+        } else {
+            endGame();
+        }
+    
+    }
+    
+
+
 
 function showQuestion(question) {
     console.log()
-    questionElement.innerText = question.question
-    question.answer.array.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer
-        button.classList.add('btn')
-        if(answer === question.answer) {
-            button.dataset.correct = answer.correct
+    questionElement.innerText = question.question;
+    question.choices.forEach(choice => {
+        const button = document.createElement('button');
+        button.innerText = choice;
+        button.classList.add('btn');
+        if(choice === question.choices[question.answer]) {
+            button.dataset.correct = true
         }
     });
 }
@@ -81,10 +92,4 @@ const countdownTimer = setInterval(() => {
 }
 }, 1000);
 
-function shuffled(shuffledQuestion) {
-    for (let i = shuffledQuestion.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledQuestion[i], shuffledQuestion[j]] = [shuffledQuestion[j], shuffledQuestion[i]];
-    }
-    return shuffledQuestion;
-}
+
