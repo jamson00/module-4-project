@@ -1,3 +1,65 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+#question{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.btn-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.btn {
+    background-color: rgb(69, 21, 131);
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: rgb(0, 0, 0) 0.3 ease;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.next-btn {
+    background-color: blueviolet;
+    color: #FFFFFF
+}
+
 .hide {
     display: none;
 }
+
+.timer {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.time-left-txt {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.timer-sec {
+    font-size: 36px;
+}
+
+
+
+
+
+
+
+
+
