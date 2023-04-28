@@ -1,36 +1,63 @@
 const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestionIndex , correctAnswers = 0;
 
 startButton.addEventListener('click', startGame);
-answerButtonsElement.addEventListener('click', event=> {
+//answerButtonsElement.addEventListener('click', event=> {
     //if btn is selected it will call select answer then will determine if the users input is correct
-    if(event.target.classlist.contains('btn')) {
-        selectAnswer(event.target.dataset.correct);
-    }
-});
+   // if(event.target.classList.contains('btn')) {
+      //  selectAnswer(event.target.dataset.correct);
+ //   }
+//});
 
 function startGame() {
     console.log('you clicked the button');
     startButton.classList.add('hide');
     //shuffling questions
-    shuffledQuestions = shuffled(shuffledQuestions);
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
     //stopping questions from repeating
-    currentQuestionIndex = 0;
+    currentQuestionIndex = 0; 
     questionContainerElement.classList.remove('hide');
     setNextQuestion();
 }
 
+
 function setNextQuestion() {
-    resetQuestion()
+    resetQuestion();
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 
+
+
+
+
+function showQuestion(question) {
+    questionElement.innerText = question.question;
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+};
+
+function resetQuestion() {
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+        (answer)
+    }
+}
 function selectAnswer(response) {
-    const question = shuffledQuestion[currentQuestionIndex]
+    const question = shuffledQuestions[currentQuestionIndex]
     //checking if user response is the correct answer
     if(response == question.answer) {
         correctAnswers++;
@@ -43,40 +70,44 @@ function selectAnswer(response) {
         }
     
     }
-    
 
-
-
-function showQuestion(question) {
-    console.log()
-    questionElement.innerText = question.question;
-    question.choices.forEach(choice => {
-        const button = document.createElement('button');
-        button.innerText = choice;
-        button.classList.add('btn');
-        if(choice === question.choices[question.answer]) {
-            button.dataset.correct = true
-        }
-    });
-}
-
-const shuffledQuestion = [
+const questions = [
     {
         question: 'what is an array?',
-        choices: ['collection of similar data elements stored at contiguous memory locations','a fish', 'a penguin', 'a squid',],
-        answer: 0
-    },  
+        answers: [
+            {text: 'array', correct: true}, 
+            {text: '4', correct: false},
+            {text: 'idk', correct: false},
+            {text: 'sure', correct: false},
+        ],
 
-    {
+        question: 'what is an scope?',
+        answers: [
+            {text: 'array', correct: true}, 
+            {text: '4', correct: false},
+            {text: 'idk', correct: false},
+            {text: 'sure', correct: false},
+        ],
+
+
+        question: 'what is agile?',
+        answers: [
+            {text: 'array', correct: true}, 
+            {text: '4', correct: false},
+            {text: 'idk', correct: false},
+            {text: 'sure', correct: false},
+        ],
+
+
         question: 'what is 2+2?',
-        choices: ['4', 'a fish', 'a penguin', 'a squid'],
-        answer: 0
-    },
+        answers: [
+            {text: 'array', correct: false}, 
+            {text: '4', correct: true},
+            {text: 'idk', correct: false},
+            {text: 'sure', correct: false},
+        ],
 
-    {
-        question: 'what is an 3+3?',
-        choices: ['6', 'a fish', 'a penguin', 'a squid'],
-        answer: 0
+
     },
 ]
 
@@ -91,5 +122,3 @@ const countdownTimer = setInterval(() => {
     clearInterval(countdownTimer);
 }
 }, 1000);
-
-
