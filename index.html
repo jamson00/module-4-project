@@ -1,43 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script defer src="./js/script.js"></script>
-    <title>Coding Quiz!</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <div id="timerDisplay"></div>
+</head>
 <body>
-  <div class="container">
-    <div id = "question-container" class= "hide">
-      <div id="question"></div>
-      <div id="answer-buttons" class="btn-grid">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
-          <button class="btn">Answer 4</button>
-      </div>
-    </div>
-    <div class="controls">
-      <button id ="start-btn" class ="start-btn btn">start</button>
-      <button id ="next-btn" class ="next-btn btn hide">next</button>
-    </div>
-    <div id ="timer-container">
-          <div class="timer">
-              <div class="time_left_txt hide">Time Left</div>
-              <div class="timer_sec hide">60</div>
-          </div>
-          <div class="time_line"></div>
-      <section>
-          <div class="que_text">
-              <!-- Here I've inserted question from JavaScript -->
-          </div>
-          <div class="option_list">
-          </div>
-        </section>
-      </div>
-  </div>
-</body> 
-
+    <main class="container" id="question-container">
+    </main>
+    <script src="./js/script.js"></script>
+</body>
 </html>
